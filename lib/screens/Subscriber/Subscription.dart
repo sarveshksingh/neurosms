@@ -889,25 +889,26 @@ class _SubscriptionState extends State<Subscription> {
       String encdvcId) async {
     RechargeRenewResponseModel response;
 
-    var rechargeRequest;
-    var productObject;
+    // var rechargeRequest;
+    // var productObject;
     List<BasicPack> basicPackList = [];
     List<BasicPack> addOnPackList = [];
     List<BasicPack> channelPackList = [];
     List<BasicPack> discontinuedPackList = [];
-    rechargeRequest.productObj = productObject;
+    // rechargeRequest.productObj = productObject;
 
-    rechargeRequest.tokenId = token;
-    rechargeRequest.subsId = subsId;
-    rechargeRequest.encdvcId = encdvcId;
-    rechargeRequest.isQuickRecharge = true;
-    rechargeRequest.latestSubsTranId = 0;
-    rechargeRequest.cashReceivedAmount = 0.00;
-    rechargeRequest.walletRechargeStatus = false;
-    rechargeRequest.pageName = "quickRecharge";
+    // rechargeRequest.tokenId = token;
+    // rechargeRequest.subsId = subsId;
+    // rechargeRequest.encdvcId = encdvcId;
+    // rechargeRequest.isQuickRecharge = true;
+    // rechargeRequest.latestSubsTranId = 0;
+    // rechargeRequest.cashReceivedAmount = 0.00;
+    // rechargeRequest.walletRechargeStatus = false;
+    // rechargeRequest.pageName = "quickRecharge";
 
     for (var i = 0; i < selectedPackageList.length; i++) {
-      MostRecentQuickRechargeSubscriptionList basicItem = selectedPackageList
+      AddOnpackageListElement basicItem = selectedPackageList.elementAt(i);
+      /*MostRecentQuickRechargeSubscriptionList basicItem = selectedPackageList
           .elementAt(i) as MostRecentQuickRechargeSubscriptionList;
       var basicPack;
       basicPack.productId = basicItem.productId;
@@ -918,17 +919,35 @@ class _SubscriptionState extends State<Subscription> {
       basicPack.packageType = basicItem.productTypeId;
       basicPack.isDiscontinued = false;
       basicPack.prdSubscriptionId = 18258;
-      basicPack.promotionId = basicItem.promotionId;
+      basicPack.promotionId = basicItem.promotionId;*/
+      var basicPack = BasicPack(
+          autoRenew: false,
+          casSettingId: 0,
+          casSmsProductId: null,
+          originalEndDate: null,
+          providerId: 0,
+          providerValue: null,
+          stbNumber: null,
+          vcNumber: null,
+          productId: basicItem.packageId,
+          startDate: basicItem.startDate,
+          endDate: basicItem.endDate,
+          subsTypeId: basicItem.subscriptionTypeId,
+          subsVal: basicItem.subscriptionValue,
+          packageType: basicItem.packageType,
+          isDiscontinued: false,
+          prdSubscriptionId: 18258,
+          promotionId: 0);
       basicPackList.add(basicPack);
     }
-    rechargeRequest.productObj.basicPacks = basicPackList;
+    // rechargeRequest.productObj.basicPacks = basicPackList;
 
-    var addOnPack;
     for (var i = 0; i < selectedAddOnPackageList.length; i++) {
-      MostRecentQuickRechargeSubscriptionList addOnItem =
+      AddOnpackageListElement addOnItem = selectedAddOnPackageList.elementAt(i);
+      /*MostRecentQuickRechargeSubscriptionList addOnItem =
           selectedAddOnPackageList.elementAt(i)
               as MostRecentQuickRechargeSubscriptionList;
-
+      var addOnPack;
       addOnPack.productId = addOnItem.productId;
       addOnPack.startDate = addOnItem.startDate;
       addOnPack.endDate = addOnItem.endDate;
@@ -937,16 +956,34 @@ class _SubscriptionState extends State<Subscription> {
       addOnPack.packageType = addOnItem.productTypeId;
       addOnPack.isDiscontinued = false;
       addOnPack.prdSubscriptionId = 18258;
-      addOnPack.promotionId = addOnItem.promotionId;
+      addOnPack.promotionId = addOnItem.promotionId;*/
+      var addOnPack = BasicPack(
+          autoRenew: false,
+          casSettingId: 0,
+          casSmsProductId: null,
+          originalEndDate: null,
+          providerId: 0,
+          providerValue: null,
+          stbNumber: null,
+          vcNumber: null,
+          productId: addOnItem.packageId,
+          startDate: addOnItem.startDate,
+          endDate: addOnItem.endDate,
+          subsTypeId: addOnItem.subscriptionTypeId,
+          subsVal: addOnItem.subscriptionValue,
+          packageType: addOnItem.packageType,
+          isDiscontinued: false,
+          prdSubscriptionId: 18258,
+          promotionId: 0);
       addOnPackList.add(addOnPack);
     }
-    rechargeRequest.productObj.addOnPacks = addOnPackList;
+    // rechargeRequest.productObj.addOnPacks = addOnPackList;
 
-    var channelPack;
     for (var i = 0; i < selectedChannelList.length; i++) {
-      MostRecentQuickRechargeSubscriptionList alaCarte = selectedChannelList
+      NChannelSubscriptionList alaCarte = selectedChannelList.elementAt(i);
+      /*MostRecentQuickRechargeSubscriptionList alaCarte = selectedChannelList
           .elementAt(i) as MostRecentQuickRechargeSubscriptionList;
-
+      var channelPack;
       channelPack.productId = alaCarte.productId;
       channelPack.startDate = alaCarte.startDate;
       channelPack.endDate = alaCarte.endDate;
@@ -955,13 +992,30 @@ class _SubscriptionState extends State<Subscription> {
       channelPack.packageType = alaCarte.productTypeId;
       channelPack.isDiscontinued = false;
       channelPack.prdSubscriptionId = 18258;
-      channelPack.promotionId = alaCarte.promotionId;
-
+      channelPack.promotionId = alaCarte.promotionId;*/
+      var channelPack = BasicPack(
+          autoRenew: false,
+          casSettingId: 0,
+          casSmsProductId: null,
+          originalEndDate: null,
+          providerId: 0,
+          providerValue: null,
+          stbNumber: null,
+          vcNumber: null,
+          productId: alaCarte.channelId,
+          startDate: alaCarte.startDate,
+          endDate: alaCarte.endDate,
+          subsTypeId: alaCarte.subscriptionTypeId,
+          subsVal: alaCarte.subscriptionValue,
+          packageType: alaCarte.channelType,
+          isDiscontinued: false,
+          prdSubscriptionId: 18258,
+          promotionId: 0);
       channelPackList.add(channelPack);
     }
-    rechargeRequest.productObj.channelPacks = channelPackList;
+    // rechargeRequest.productObj.channelPacks = channelPackList;
 
-    var discontinuedPack;
+    // var discontinuedPack;
     /*for (var i = 0; i < basicList.length; i++) {
       MostRecentQuickRechargeSubscriptionList discontinued =
           basicList.elementAt(i);
@@ -978,15 +1032,34 @@ class _SubscriptionState extends State<Subscription> {
 
       discontinuedPackList.add(discontinuedPack);
     }*/
-    rechargeRequest.productObj.discontinuedPacks = discontinuedPackList;
+    // rechargeRequest.productObj.discontinuedPacks = discontinuedPackList;
 
     // rechargeRequest.productObj.basicPacks = [];
     // rechargeRequest.productObj.addOnPacks = [];
     // rechargeRequest.productObj.channelPacks = [];
     // rechargeRequest.productObj.discontinuedPacks = [];
-    rechargeRequest.productObj.isCreditLimitUsed = false;
-    rechargeRequest.productObj.isBulkRecharge = false;
-    rechargeRequest.productObj.cashReceived = 0.00;
+    // rechargeRequest.productObj.isCreditLimitUsed = false;
+    // rechargeRequest.productObj.isBulkRecharge = false;
+    // rechargeRequest.productObj.cashReceived = 0.00;
+
+    var productObject = ProductObj(
+        basicPacks: basicPackList,
+        addOnPacks: addOnPackList,
+        channelPacks: channelPackList,
+        discontinuedPacks: discontinuedPackList,
+        isCreditLimitUsed: false,
+        isBulkRecharge: false,
+        cashReceived: 0.00);
+    var rechargeRequest = RechargeRequest(
+        tokenId: token,
+        productObj: productObject,
+        subsId: subsId,
+        encdvcId: encdvcId,
+        isQuickRecharge: true,
+        latestSubsTranId: 0,
+        cashReceivedAmount: 0.00,
+        walletRechargeStatus: false,
+        pageName: "subscription");
 
     final client = ApiClient(Dio(BaseOptions(contentType: "application/json")));
     try {
@@ -1007,11 +1080,13 @@ class _SubscriptionState extends State<Subscription> {
         } else if (response.status == 0) {
         } else if (response.status == 1) {
           // Navigator.pop(context);
-          showAlertDialog(context);
+          //print(response.message);
+          showAlertDialog(context, response.message);
         }
       });
     } catch (error, stacktrace) {
       print("Exception occured: $error stackTrace: $stacktrace");
+      showAlertDialog(context, error.toString());
       /*
       Navigator.push(
           context,
@@ -1019,14 +1094,14 @@ class _SubscriptionState extends State<Subscription> {
               builder: (_) =>
                   WebView()));
        */
-      // Navigator.pop(context);
+      //Navigator.pop(context);
       return BaseModel()
         ..setException(ServerError.withError(error: error as DioError));
     }
     return BaseModel()..data = response;
   }
 
-  showAlertDialog(BuildContext context) {
+  showAlertDialog(BuildContext context, String msg) {
     // set up the button
     Widget okButton = TextButton(
       child: Text("OK"),
@@ -1037,8 +1112,8 @@ class _SubscriptionState extends State<Subscription> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Quick Recharge"),
-      content: Text("Congratualation Your Recharge is Successfully"),
+      title: Text("Subscription"),
+      content: Text(msg),
       actions: [
         okButton,
       ],
@@ -2442,7 +2517,7 @@ class _SubscriptionState extends State<Subscription> {
           //bool status = addOnList.elementAt(index).isActive;
 //Sarvesh 24-04-22
           //num amount = 0.0;
-           num? amount = addOnList.elementAt(index).packagePrice;
+          num? amount = addOnList.elementAt(index).packagePrice;
           //double monthlyPrice = addOnList.elementAt(index).monthlyPrice;
 
           //bool isTaxIncluded = addOnList.elementAt(index).isTaxIncluded;

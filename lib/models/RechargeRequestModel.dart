@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-RechargeRequest rechargeRequestFromJson(String str) => RechargeRequest.fromJson(json.decode(str));
+RechargeRequest rechargeRequestFromJson(String str) =>
+    RechargeRequest.fromJson(json.decode(str));
 
-String rechargeRequestToJson(RechargeRequest data) => json.encode(data.toJson());
+String rechargeRequestToJson(RechargeRequest data) =>
+    json.encode(data.toJson());
 
 class RechargeRequest {
   RechargeRequest({
@@ -31,29 +33,31 @@ class RechargeRequest {
   bool walletRechargeStatus;
   String pageName;
 
-  factory RechargeRequest.fromJson(Map<String, dynamic> json) => RechargeRequest(
-    tokenId: json["tokenId"],
-    productObj: ProductObj.fromJson(json["productObj"]),
-    subsId: json["subsId"],
-    encdvcId: json["encdvcId"],
-    isQuickRecharge: json["isQuickRecharge"],
-    latestSubsTranId: json["latestSubsTranId"],
-    cashReceivedAmount: json["cashReceivedAmount"],
-    walletRechargeStatus: json["walletRechargeStatus"],
-    pageName: json["pageName"],
-  );
+  factory RechargeRequest.fromJson(Map<String, dynamic> json) =>
+      RechargeRequest(
+        tokenId: json["tokenId"],
+        productObj: ProductObj.fromJson(json["productObj"]),
+        subsId: json["subsId"],
+        encdvcId: json["encdvcId"],
+        isQuickRecharge: json["isQuickRecharge"],
+        latestSubsTranId: json["latestSubsTranId"],
+        cashReceivedAmount: json["cashReceivedAmount"],
+        walletRechargeStatus: json["walletRechargeStatus"],
+        pageName: json["pageName"],
+      );
 
-  Map<String, dynamic> toJson() => {
-    "tokenId": tokenId,
-    "productObj": productObj.toJson(),
-    "subsId": subsId,
-    "encdvcId": encdvcId,
-    "isQuickRecharge": isQuickRecharge,
-    "latestSubsTranId": latestSubsTranId,
-    "cashReceivedAmount": cashReceivedAmount,
-    "walletRechargeStatus": walletRechargeStatus,
-    "pageName": pageName,
-  };
+  Map<String, dynamic> toJson() =>
+      {
+        "tokenId": tokenId,
+        "productObj": productObj.toJson(),
+        "subsId": subsId,
+        "encdvcId": encdvcId,
+        "isQuickRecharge": isQuickRecharge,
+        "latestSubsTranId": latestSubsTranId,
+        "cashReceivedAmount": cashReceivedAmount,
+        "walletRechargeStatus": walletRechargeStatus,
+        "pageName": pageName,
+      };
 }
 
 class ProductObj {
@@ -75,29 +79,42 @@ class ProductObj {
   bool isBulkRecharge;
   double cashReceived;
 
-  factory ProductObj.fromJson(Map<String, dynamic> json) => ProductObj(
-    basicPacks: List<BasicPack>.from(json["basicPacks"].map((x) => BasicPack.fromJson(x))),
-    addOnPacks: List<BasicPack>.from(json["addOnPacks"].map((x) => x)),
-    channelPacks: List<BasicPack>.from(json["channelPacks"].map((x) => x)),
-    discontinuedPacks: List<BasicPack>.from(json["discontinuedPacks"].map((x) => x)),
-    isCreditLimitUsed: json["isCreditLimitUsed"],
-    isBulkRecharge: json["isBulkRecharge"],
-    cashReceived: json["cashReceived"],
-  );
+  factory ProductObj.fromJson(Map<String, dynamic> json) =>
+      ProductObj(
+        basicPacks: List<BasicPack>.from(
+            json["basicPacks"].map((x) => BasicPack.fromJson(x))),
+        addOnPacks: List<BasicPack>.from(json["addOnPacks"].map((x) => x)),
+        channelPacks: List<BasicPack>.from(json["channelPacks"].map((x) => x)),
+        discontinuedPacks: List<BasicPack>.from(
+            json["discontinuedPacks"].map((x) => x)),
+        isCreditLimitUsed: json["isCreditLimitUsed"],
+        isBulkRecharge: json["isBulkRecharge"],
+        cashReceived: json["cashReceived"],
+      );
 
-  Map<String, dynamic> toJson() => {
-    "basicPacks": List<dynamic>.from(basicPacks.map((x) => x.toJson())),
-    "addOnPacks": List<dynamic>.from(addOnPacks.map((x) => x)),
-    "channelPacks": List<dynamic>.from(channelPacks.map((x) => x)),
-    "discontinuedPacks": List<dynamic>.from(discontinuedPacks.map((x) => x)),
-    "isCreditLimitUsed": isCreditLimitUsed,
-    "isBulkRecharge": isBulkRecharge,
-    "cashReceived": cashReceived,
-  };
+  Map<String, dynamic> toJson() =>
+      {
+        "basicPacks": List<dynamic>.from(basicPacks.map((x) => x.toJson())),
+        "addOnPacks": List<dynamic>.from(addOnPacks.map((x) => x)),
+        "channelPacks": List<dynamic>.from(channelPacks.map((x) => x)),
+        "discontinuedPacks": List<dynamic>.from(
+            discontinuedPacks.map((x) => x)),
+        "isCreditLimitUsed": isCreditLimitUsed,
+        "isBulkRecharge": isBulkRecharge,
+        "cashReceived": cashReceived,
+      };
 }
 
 class BasicPack {
   BasicPack({
+    required this.autoRenew,
+    required this.casSettingId,
+    required this.casSmsProductId,
+    required this.originalEndDate,
+    required this.providerId,
+    required this.providerValue,
+    required this.stbNumber,
+    required this.vcNumber,
     required this.productId,
     required this.startDate,
     required this.endDate,
@@ -109,37 +126,63 @@ class BasicPack {
     required this.promotionId,
   });
 
-  int productId;
-  String startDate;
-  String endDate;
-  int subsTypeId;
-  int subsVal;
-  int packageType;
-  bool isDiscontinued;
-  int prdSubscriptionId;
-  int promotionId;
+  bool? autoRenew;
+  int? casSettingId;
+  int? casSmsProductId;
+  String? originalEndDate;
+  int? providerId;
+  String? providerValue;
+  String? stbNumber;
+  String? vcNumber;
+  int? productId;
+  String? startDate;
+  String? endDate;
+  int? subsTypeId;
+  int? subsVal;
+  int? packageType;
+  bool? isDiscontinued;
+  int? prdSubscriptionId;
+  int? promotionId;
 
-  factory BasicPack.fromJson(Map<String, dynamic> json) => BasicPack(
-    productId: json["productId"],
-    startDate: json["startDate"],
-    endDate: json["endDate"],
-    subsTypeId: json["subsTypeId"],
-    subsVal: json["subsVal"],
-    packageType: json["packageType"],
-    isDiscontinued: json["isDiscontinued"],
-    prdSubscriptionId: json["prdSubscriptionId"],
-    promotionId: json["promotionId"],
-  );
+  factory BasicPack.fromJson(Map<String, dynamic> json) =>
+      BasicPack(
+        autoRenew: json["autoRenew"],
+        casSettingId: json["casSettingId"],
+        casSmsProductId: json["casSmsProductId"],
+        originalEndDate: json["originalEndDate"],
+        providerId: json["providerId"],
+        providerValue: json["providerValue"],
+        stbNumber: json["stbNumber"],
+        vcNumber: json["vcNumber"],
+        productId: json["productId"],
+        startDate: json["startDate"],
+        endDate: json["endDate"],
+        subsTypeId: json["subsTypeId"],
+        subsVal: json["subsVal"],
+        packageType: json["packageType"],
+        isDiscontinued: json["isDiscontinued"],
+        prdSubscriptionId: json["prdSubscriptionId"],
+        promotionId: json["promotionId"],
+      );
 
-  Map<String, dynamic> toJson() => {
-    "productId": productId,
-    "startDate": startDate,
-    "endDate": endDate,
-    "subsTypeId": subsTypeId,
-    "subsVal": subsVal,
-    "packageType": packageType,
-    "isDiscontinued": isDiscontinued,
-    "prdSubscriptionId": prdSubscriptionId,
-    "promotionId": promotionId,
-  };
+  Map<String, dynamic> toJson() =>
+      {
+        "autoRenew": autoRenew,
+        "casSettingId": casSettingId,
+        "casSmsProductId": casSmsProductId,
+        "originalEndDate": originalEndDate,
+        "providerId": providerId,
+        "providerValue": providerValue,
+        "stbNumber": stbNumber,
+        "vcNumber": vcNumber,
+        "productId": productId,
+        "startDate": startDate,
+        "endDate": endDate,
+        "subsTypeId": subsTypeId,
+        "subsVal": subsVal,
+        "packageType": packageType,
+        "isDiscontinued": isDiscontinued,
+        "prdSubscriptionId": prdSubscriptionId,
+        "promotionId": promotionId,
+      };
 }

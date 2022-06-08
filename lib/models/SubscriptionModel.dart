@@ -550,20 +550,20 @@ class AddOnpackageListElement {
     required this.packageSubscriptionPrice,
   });
 
-  num packageId;
+  int? packageId;
   String? ePackageId;
   num? packagePriceSettingId;
   String? packageName;
   num? packagePrice;
   num broadCasterId;
   String? broadCasterName;
-  num packageType;
-  num subscriptionTypeId;
+  int? packageType;
+  int? subscriptionTypeId;
   String? subscriptionTypeName;
-  num subscriptionValue;
+  int? subscriptionValue;
   bool packageStatus;
-  DateTime startDate;
-  DateTime endDate;
+  String? startDate;
+  String? endDate;
   num expiryInDays;
   String? message;
   num channelCount;
@@ -588,8 +588,8 @@ class AddOnpackageListElement {
         subscriptionTypeName: json["subscriptionTypeName"],
         subscriptionValue: json["subscriptionValue"],
         packageStatus: json["packageStatus"],
-        startDate: DateTime.parse(json["startDate"]),
-        endDate: DateTime.parse(json["endDate"]),
+        startDate: json["startDate"],
+        endDate: json["endDate"],
         expiryInDays: json["expiryInDays"],
         message: json["message"],
         channelCount: json["channelCount"],
@@ -653,19 +653,19 @@ class NChannelSubscriptionList {
     required this.choice,
   });
 
-  num channelId;
+  int? channelId;
   String? channelName;
   num channelMonthlyPrice;
   num channelSubscriptionPrice;
   num broadCasterId;
   String? broadCasterName;
-  num channelType;
-  num subscriptionTypeId;
+  int? channelType;
+  int? subscriptionTypeId;
   String? subscriptionTypeName;
-  num subscriptionValue;
+  int? subscriptionValue;
   bool channelStatus;
-  DateTime startDate;
-  DateTime endDate;
+  String? startDate;
+  String? endDate;
   num expiryInDays;
   String? message;
   bool taxIncluded;
@@ -684,8 +684,8 @@ class NChannelSubscriptionList {
         subscriptionTypeName: json["subscriptionTypeName"],
         subscriptionValue: json["subscriptionValue"],
         channelStatus: json["channelStatus"],
-        startDate: DateTime.parse(json["startDate"]),
-        endDate: DateTime.parse(json["endDate"]),
+        startDate: json["startDate"],
+        endDate: json["endDate"],
         expiryInDays: json["expiryInDays"],
         message: json["message"],
         taxIncluded: json["taxIncluded"],

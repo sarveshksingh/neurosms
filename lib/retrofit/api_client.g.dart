@@ -169,29 +169,32 @@ class _ApiClient implements ApiClient {
         data: _data);*/
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<SubscriptionModel>(Options(
-            method: 'POST',
-            headers: _headers,
-            extra: _extra,
-            contentType: 'application/json')
+                method: 'POST',
+                headers: _headers,
+                extra: _extra,
+                contentType: 'application/json')
             .compose(_dio.options, Apis.subscription,
-            queryParameters: queryParameters, data: _data)
+                queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = SubscriptionModel.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<RechargeRenewResponseModel> rechargeRenew(queryParameters) async {
+  Future<RechargeRenewResponseModel> rechargeRenew(dataJson) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = queryParameters;
+    final _data = dataJson;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<RechargeRenewResponseModel>(
-            Options(method: 'POST', headers: _headers, extra: _extra)
-                .compose(_dio.options, 'Recharge/rechargeRenew',
-                    queryParameters: queryParameters, data: _data)
-                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+        _setStreamType<RechargeRenewResponseModel>(Options(
+                method: 'POST',
+                headers: _headers,
+                extra: _extra,
+                contentType: 'application/json')
+            .compose(_dio.options, Apis.rechargeRenew,
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = RechargeRenewResponseModel.fromJson(_result.data!);
     return value;
   }
